@@ -10,6 +10,12 @@ git pull
 # Build the static site (replace with your actual build command)
 gssg --url http://localhost:2368 --dest ./docs
 
+# Replace absolute references to localhost to demo.wendovernews.org 
+find "./docs" -name "*.html" -exec sed -i '' 's|http://localhost:2368|https://demo.wendovernews.org|g' {} \;
+
+# Delete .DS_Store files
+find . -name .DS_Store -print -delete
+
 # Stage and commit changes
 git add docs
 git commit -m "Regenerate static site"
